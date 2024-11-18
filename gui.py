@@ -24,6 +24,8 @@ class Gui(QWidget):
 
         main_layout.add_layout(money_layout)
 
+        main_layout.add_widget(QLabel('Select a Coin:'))
+
         trade_layout = QHBoxLayout()
 
         self.cryptos, self.crypto_ids = coingecko.get_coin_ids()
