@@ -15,8 +15,11 @@ class Gui(QWidget):
 
         money_layout = QHBoxLayout()
         self.money = 100000
-        self.money_label = QLabel(str(self.money))
+        self.money_label = QLabel('$' + str(self.money))
         money_layout.add_widget(self.money_label)
+
+        self.price_label = QLabel('')
+        money_layout.add_widget(self.price_label)
        
 
         main_layout.add_layout(money_layout)
@@ -39,7 +42,7 @@ class Gui(QWidget):
         buttons_layout.add_widget(buy_button)
         buttons_layout.add_widget(sell_button)
 
-    
+        main_layout.add_layout(buttons_layout)    
 
         self.set_layout(main_layout)
 
