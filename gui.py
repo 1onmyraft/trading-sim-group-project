@@ -8,7 +8,7 @@ import coingecko
 class Gui(QWidget):
     def __init__(self):
         super().__init__()
-        self.window_title = 'Trade Sim'
+        self.window_title = 'Trade Simy'
 
         
         main_layout = QVBoxLayout()
