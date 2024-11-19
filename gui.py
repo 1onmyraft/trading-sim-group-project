@@ -18,8 +18,14 @@ class Gui(QWidget):
         self.money_label = QLabel('$' + str(self.money))
         money_layout.add_widget(self.money_label)
 
-        self.price_label = QLabel('')
+        money_layout.add_widget(QLabel(' ')) # spacing
+
+        self.price_label = QLabel('')#$' + str('1000') + ' per coin')
         money_layout.add_widget(self.price_label)
+
+        
+
+        
        
 
         main_layout.add_layout(money_layout)
@@ -32,6 +38,9 @@ class Gui(QWidget):
         
         self.crypto_combo = QComboBox()
         self.crypto_combo.add_items(self.cryptos)
+
+        self.crypto_combo.currentIndexChanged.connect(self.combo_changed)
+        
         trade_layout.add_widget(self.crypto_combo)
         
 
@@ -50,6 +59,15 @@ class Gui(QWidget):
 
         self.show()
 
+    def combo_changed(self):
+        coin_name = self.crypto_combo.current_text
+        coin_id = ''
+        for idx, c_name in enumerate(self.cryptos) :
+            if c_name == coin_name:
+                coin_id = self.crypto_ids[idx]
+            
+        price = coingecko.get_price(coin_id)
+        self.price_label.text = '$' + str(price)
        
         
       

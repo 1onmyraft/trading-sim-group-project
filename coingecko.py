@@ -6,7 +6,7 @@ heads = {
     }
 
 cryptos = [
-    'bitcoin', 'ethereum', 'tether', 'solana', 'bnb', 'xrp', 'dogecoin', 'usdc', 'shiba inu', 'peanut the squirrel', 'litecoin'
+    'bitcoin', 'ethereum', 'tether', 'solana', 'bnb', 'xrp', 'dogecoin', 'usdc', 'shiba inu', 'peanut the squirrel', 'litecoin', 'monero'
 ]
 
 
@@ -24,7 +24,14 @@ def get_coin_ids():
                 market_coin_names.append(coin['name'])
                 market_coin_ids.append(coin['id'])
 
- #   print(market_coins)
+#    print(market_coins)
     return market_coin_names, market_coin_ids
 
-   
+def get_price(coin_id, currency ='usd'):
+    data = {'ids': coin_id, 'vs_currencies': currency, 'precision': '2'}
+    url = 'https://api.coingecko.com/api/v3/simple/price'
+    r = requests.get(url, headers=heads, params=data)
+#    print(r.json())
+    return float(r.json()[coin_id][currency])
+    
+
