@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import *
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QDoubleValidator
+from PySide6.QtGui import QDoubleValidator, QPixmap
 from __feature__ import snake_case, true_property
 import sys
 
@@ -11,7 +11,18 @@ class Gui(QWidget):
         super().__init__()
         self.window_title = 'Trade Simy'
 
-        
+        #To add image
+        # label = QLabel()
+        # my_pixmap = QPixmap('images/crypto-image.jpg')
+        # my_pixmap = my_pixmap.scaled(500, 500, Qt.KeepAspectRatio)
+        # label.pixmap = my_pixmap
+        # self.layout = QVBoxLayout()
+        # self.layout.add_widget(label)
+        # self.set_layout(self.layout)
+
+
+
+
         main_layout = QVBoxLayout()
 
         money_layout = QHBoxLayout()
@@ -70,6 +81,9 @@ class Gui(QWidget):
         sell_button = QPushButton('Sell')
         sell_button.clicked.connect(self.sell_btn)
 
+        view_button = QPushButton('View image for currency')
+        view_button.clicked.connect(self.view_btn)
+
         self.amount_box = QLineEdit()
         self.amount_box.placeholder_text = 'Enter Amount'
 
@@ -80,6 +94,7 @@ class Gui(QWidget):
 
         buttons_layout.add_widget(buy_button)
         buttons_layout.add_widget(sell_button)
+        buttons_layout.add_widget(view_button)
 
         amount_layout = QVBoxLayout()
         amount_layout.add_widget(self.amount_box)
@@ -157,7 +172,24 @@ class Gui(QWidget):
         self.sell(coin_name, amount)
         self.update()
       
-    
+    def view_btn(self):
+        self.new_win = NewWindow()
+        self.new_win.show()
+
+
+class NewWindow(QWidget):
+    def __init__(self):
+        super().__init__()
+        label = QLabel()
+        my_pixmap = QPixmap('images/crypto-image.jpg')
+        label.pixmap = my_pixmap
+        self.layout = QVBoxLayout()
+        self.layout.add_widget(label)
+        self.set_layout(self.layout)
+
+
+
+
 app = QApplication([])
 my_gui = Gui()
 sys.exit(app.exec())
