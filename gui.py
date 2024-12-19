@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import *
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QDoubleValidator, QPixmap
+from PySide6.QtGui import QDoubleValidator, QPixmap, QIcon
 from __feature__ import snake_case, true_property
 import sys
 
@@ -10,6 +10,11 @@ class Gui(QWidget):
     def __init__(self):
         super().__init__()
         self.window_title = 'Trade Simy'
+
+        icon = QIcon()
+        icon.add_file('icon.jpg')
+
+        self.window_icon = icon
 
         #To add image
         # label = QLabel()
